@@ -3,7 +3,6 @@
 
 <head>
   <title>
-    <%= title %>
   </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -21,7 +20,30 @@
       </button>
     </div>
   </nav>
-  <div class="container-fluid">
-  </div>
+  <% if (product) { %>
+  <div class="container-fluid bg-dark"></div>
+  <h2 class="p-3">Products</h2>
+  <table class="table table-hover">
+    <tbody>
+      <% function createTableRow(title, data) { %>
+        <tr class="table-dark-50">
+          <th class="text-white bg-black"><%= title %></th>
+          <td class="bg-white text-black fw-bolder"><%= data %></td>
+        </tr>
+      <% } %>
+  
+      <% createTableRow("Product ID", product.ProductID); %>
+      <% createTableRow("Product Name", product.Name); %>
+      <% createTableRow("Color", product.Color); %>
+      <% createTableRow("Size", product.Size); %>
+      <% createTableRow("Weight", product.Weight); %>
+      <% createTableRow("List Price", product.ListPrice); %>
+      <% createTableRow("Sell Start Date", product.SellStartDate); %>
+    </tbody>
+  </table>
+  <%  } else { %>
+    <p class="fs-1 fw-bold text-white text-md-center">Product not found</p>
+  <% } %>
+</div>
 </body>
 </html>
