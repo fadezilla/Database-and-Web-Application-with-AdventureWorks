@@ -5,8 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var db = require("./models");
-db.sequelize.sync({ force: false, alter: true })
 var app = express();
 
 // view engine setup

@@ -3,7 +3,7 @@
 
 <head>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<link rel='stylesheet' href='stylesheets/style.css' />
 </head>
 
 <body>
@@ -33,7 +33,7 @@
 				<div class="panel d-flex align-items-center mt-0 ">
 					<div class="panel-heading">
 						<h6 class="m-0 align-bottom panel-caption">Power BI Query results to export</h6>
-						<button class="btn btn-warning me-1 float-end" >Export Table</button>
+						<button class="btn btn-warning me-1 float-end" id="export-btn" data-table-id="table">Export Table</button>
 						<a class="btn btn-success me-1 float-end" href="/">Home</a>
 					</div>
 				</div>
@@ -91,8 +91,16 @@
 			</div>
 	</footer>
   </div>
-<script src=" /js/main.js"></script>
-
+  <script src="/js/main.js"></script>
+  <script>
+	  document.addEventListener('DOMContentLoaded', function() {
+		  var exportButton = document.getElementById('export-btn');
+		  exportButton.addEventListener('click', function() {
+			  var tableId = this.getAttribute('data-table-id');
+			  exportTable(tableId);
+		  });
+	  });
+  </script>
 </body>
 
 </html>

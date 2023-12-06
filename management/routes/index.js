@@ -1,44 +1,49 @@
 var express = require('express');
+var db = require('../models/index');
+var ManagementService = require('../services/managementService');
+var managementService = new ManagementService(db);
 var router = express.Router();
 
 /* GET home page. */
 router.get('/querya', async (req, res, next) => {
-	let queryA = [];
+	let queryA = await managementService.queryA();
 	res.render('querya', { query: queryA });
 });
 
 router.get('/queryb', async (req, res, next) => {
-	let query = [];
+	let query = await managementService.queryB();
 	res.render('queryb', { query: query });
 });
 
 router.get('/queryc', async (req, res, next) => {
-	let query = [];
+	let query = await managementService.queryC();;
 	res.render('queryc', { query: query });
 });
 
 router.get('/queryd', async (req, res, next) => {
-	let query = [{Total:0}];
+	const results = await managementService.queryD();
+	let total = results[0].Total
+	let query = [{Total:total}];
 	res.render('queryd', { query: query[0] });
 });
 
 router.get('/querye', async (req, res, next) => {
-	let query = [];
+	let query = await managementService.queryE();
 	res.render('querye', { query: query });
 });
 
 router.get('/queryf', async (req, res, next) => {
-	let query = [];
+	let query = await managementService.queryF();
 	res.render('queryf', { query: query });
 });
 
 router.get('/queryg', async (req, res, next) => {
-	let query = [];
+	let query = await managementService.queryG();
 	res.render('queryg', { query: query });
 });
 
 router.get('/queryh', async (req, res, next) => {
-	let query = [];
+	let query = await managementService.queryH();
 	res.render('queryh', { query: query });
 });
 
@@ -46,42 +51,42 @@ router.get('/', async (req, res, next) => {
 	let options = [
 		{
 			name: 'Query A',
-			link: 'querya',
+			link: 'management/querya',
 			description: 'Display the table results for Query A',
 		},
 		{
 			name: 'Query B',
-			link: 'queryb',
+			link: 'management/queryb',
 			description: 'Display the table results for Query B',
 		},
 		{
 			name: 'Query C',
-			link: 'queryc',
+			link: 'management/queryc',
 			description: 'Display the table results for Query C',
 		},
 		{
 			name: 'Query D',
-			link: 'queryd',
+			link: 'management/queryd',
 			description: 'Display the table results for Query D',
 		},
 		{
 			name: 'Query E',
-			link: 'querye',
+			link: 'management/querye',
 			description: 'Display the table results for Query E',
 		},
 		{
 			name: 'Query F',
-			link: 'queryf',
+			link: 'management/queryf',
 			description: 'Query result for PowerBI visualization',
 		},
 		{
 			name: 'Query G',
-			link: 'queryg',
+			link: 'management/queryg',
 			description: 'Query result for PowerBI visualization',
 		},
 		{
 			name: 'Query H',
-			link: 'queryh',
+			link: 'management/queryh',
 			description: 'Query result for PowerBI visualization',
 		},
 	];
